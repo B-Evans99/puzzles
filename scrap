@@ -1,0 +1,32 @@
+
+
+def isCloser(target, asking, block):
+    return abs(abs(target[0])-abs(asking[0])) + abs(abs(target[1])-abs(asking[1])) < abs(abs(target[0])-abs(block[0])) + abs(abs(target[1])-abs(block[1]))
+
+
+def findIntersect(slope, point):
+    deltaX = -point[0]
+
+    intersect = point[1] + (deltaX*slope)
+
+    return [0, intersect]
+
+
+def getLine(target, asking):
+    slope = 0 if abs(abs(target[0]) - abs(asking[0])) == 0 else abs(
+        abs(target[1])-abs(asking[1]))/abs(abs(target[0]) - abs(asking[0]))
+    intersect = findIntersect(slope, target)
+
+    return str(intersect)+" "+str(slope)
+
+
+def sameLine(target, asking, block):
+    slope = 0 if abs(abs(target[0]) - abs(asking[0])) == 0 else abs(
+        abs(target[1])-abs(asking[1]))/abs(abs(target[0]) - abs(asking[0]))
+    intersect = findIntersect(slope, target)
+
+    checkSlope = 0 if abs(
+        abs(block[0]) - abs(asking[0])) == 0 else abs(abs(block[1])-abs(asking[1]))/abs(abs(block[0]) - abs(asking[0]))
+
+    return checkSlope == slope and findIntersect(slope, block) == intersect
+
