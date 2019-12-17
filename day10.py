@@ -54,11 +54,14 @@ for i in asteroids:
         maxN = asteroids[i]
         soul = i
 
+print("SOUL "+soul+" "+str(maxN))
 printField()
+
+print(asteroids)
 
 lines = {}
 for j in asteroids:
-    if(j != i):
+    if(j != soul):
         target = getCoords(soul)
         asking = getCoords(j)
         frac = math.atan2(target[1]-asking[1], target[0]-asking[0])
@@ -77,17 +80,21 @@ angles.sort()
 
 start = 0
 for (i, index) in enumerate(angles):
-    if(index == 0):
+    if(index == math.pi/2):
         start = i
 
+
 count = 0
-while(count < 200):
-    print(angles[start])
-    count += 1
-    if(count == 200):
-        print(lines[angles[start]])
-    lines[angles[start]] = lines[angles[start]][1:]
+target = len(asteroids)-1
+while(count < target):
+    if(len(lines[angles[start]]) > 0):
+        count += 1
+        del asteroids[str(lines[angles[start]][0][1]
+                          [0])+","+str(lines[angles[start]][0][1][1])]
+        print("DESTROY "+str(count)+" "+str(lines[angles[start]][0][1]
+                                            [0])+","+str(lines[angles[start]][0][1][1]))
+        lines[angles[start]] = lines[angles[start]][1:]
 
     start += 1
-    if(not start < len(angles)):
+    if(start > len(angles)-1):
         start = 0
