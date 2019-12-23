@@ -11,7 +11,7 @@ class Computer:
             for (i, y) in enumerate(x.split(",")):
                 self.program[i] = int(y)
 
-    def getOutput(self,inputVar):
+    def getOutput(self, inputVar="", userInput=False):
         stopped = False
 
         while(self.position < len(self.program) and not stopped):
@@ -25,12 +25,13 @@ class Computer:
                 self.setPosition(insertTo, param1*param2)
                 self.position += 4
             elif(code == 3):
-                self.setPosition(insertTo,
-                                 inputVar)
-                print(str(self.position)+" > "+str(inputVar))
+                if(callable(userInput)):
+                    self.setPosition(insertTo, userInput())
+                else:
+                    self.setPosition(insertTo,
+                                     inputVar)
                 self.position += 2
             elif(code == 4):
-                print("OUTPUT "+str(param1))
                 self.position += 2
                 return param1
             elif(code == 5):
